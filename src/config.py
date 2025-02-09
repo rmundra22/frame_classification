@@ -44,5 +44,5 @@ class Config:
     ]
     MODEL = "CNNDeep" #  "CNNBase", "CNNDeep", "CNNDeepWithSE", "CNNDeepWithCSE"
     DATA_REDUCTION_FACTOR = 0.4
-    LOSS_FUNCTION = "FocalLoss" # "CrossEntropy", "NLLLoss", "MSELoss", "FocalLoss"
+    LOSS_FUNCTION = "CrossEntropy" # "CrossEntropy", "NLLLoss", "MSELoss", "FocalLoss"
     SSIM_THRESHOLD = 30
