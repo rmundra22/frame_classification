@@ -4,7 +4,7 @@ from tqdm import tqdm
 from torch.utils.data import DataLoader
 from torch.optim.lr_scheduler import StepLR
 import torchvision.transforms as transforms
-from torchvision.datasets import ImageFolder
+from torchvision.datasets import ImageFolder, Subset
 from torch.utils.tensorboard import SummaryWriter
 from config import Config
 from utils import set_seed
