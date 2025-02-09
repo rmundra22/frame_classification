@@ -192,8 +192,8 @@ def main():
     val_dataset.dataset.transform = transform_val  # Keep validation set simple
     
     print(f"Total dataset size: {small_dataset_size}")
-    print(f"Training set size: {len(train_size)}")
-    print(f"Validation set size: {len(val_size)}")
+    print(f"Training set size: {train_size}")
+    print(f"Validation set size: {val_size}")
 
     # Create DataLoaders for train and validation sets
     train_loader = DataLoader(
