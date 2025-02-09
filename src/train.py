@@ -10,15 +10,15 @@ from torch.utils.tensorboard import SummaryWriter
 from config import Config
 from utils import set_seed
 
-# switch to right model for testing
+# switch to right model for training
 if Config.MODEL == "CNNBase":
-    from frame_classification.src.models.cnn_base import CNNModelBase as CNNModel
+    from models.cnn_base import CNNModelBase as CNNModel
 elif Config.MODEL == "CNNDeep":
-    from frame_classification.src.models.cnn_deep import CNNModelDeep as CNNModel
+    from models.cnn_deep import CNNModelDeep as CNNModel
 elif Config.MODEL == "CNNDeepWithSE":
-    from frame_classification.src.models.cnn_deep_with_se import CNNModelWithSEBlock as CNNModel
+    from models.cnn_deep_with_se import CNNModelWithSEBlock as CNNModel
 elif Config.MODEL == "CNNDeepWithCSE":
-    from frame_classification.src.models.cnn_deep_with_cse import CNNModelWithConvSEBlock as CNNModel
+    from models.cnn_deep_with_cse import CNNModelWithConvSEBlock as CNNModel
 
 if Config.DEVICE == "cuda":
     scaler = torch.amp.GradScaler()
