@@ -42,7 +42,7 @@ class Config:
         "short_player",
         "spectators",
     ]
-    MODEL = "CNNDeepWithSE" #  "CNNBase", "CNNDeep", "CNNDeepWithSE", "CNNDeepWithCSE"
+    MODEL = "CNNDeep" #  "CNNBase", "CNNDeep", "CNNDeepWithSE", "CNNDeepWithCSE"
     DATA_REDUCTION_FACTOR = 0.4
     LOSS_FUNCTION = "CrossEntropy" # "CrossEntropy", "NLLLoss", "MSELoss", "FocalLoss"
     SSIM_THRESHOLD = 30
