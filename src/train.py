@@ -35,7 +35,7 @@ def train_one_epoch(model, dataloader, criterion, optimizer, device):
     total = 0
     running_loss = 0
 
-    for images, labels in data_loader:
+    for images, labels in dataloader:
         # Your training/inference code here
         print(images.size(), labels.size())
         break
