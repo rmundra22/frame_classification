@@ -35,9 +35,8 @@ def train_one_epoch(model, dataloader, criterion, optimizer, device):
     total = 0
     running_loss = 0
     
-    # pbar = tqdm(enumerate(dataloader), total=len(dataloader))
-    # for batch_idx, (images, labels) in pbar:
-    for batch_idx, (images, labels) in enumerate(dataloader):
+    pbar = tqdm(enumerate(dataloader), total=len(dataloader))
+    for batch_idx, (images, labels) in pbar:
         images, labels = images.to(device), labels.to(device)
         optimizer.zero_grad()
         if Config.DEVICE == "cuda":
@@ -104,12 +103,8 @@ def validate(model, dataloader, criterion, device):
     # Apply them wisely for under-represented classes
 def main():
     set_seed(Config.SEED)
+    
     # Create dataset and dataloader
-    global_dataset = ImageFolder(root=Config.DATA_PATH_TRAIN, transform=None)
-    
-    set_seed(Config.SEED)
-    
-   # Create dataset and dataloader
     transform_train = transforms.Compose(
         [
             transforms.Resize((224, 224)),
@@ -128,6 +123,9 @@ def main():
             transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5]),
         ]
     ) # kinda like a default transformation
+    
+    # Create dataset and dataloader
+    global_dataset = ImageFolder(root=Config.DATA_PATH_TRAIN, transform=transform_train)
 
     # Merge 'spectators_long' and 'spectators_short' into 'spectators'
     class_map = {
