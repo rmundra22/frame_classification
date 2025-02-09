@@ -239,7 +239,8 @@ def main():
     # Level 3. Evaluate 3 different criterion functions
     
     # Training loop with early stopping, tensorboard, and multiple criterion evaluation
-    writer = SummaryWriter(saved_metrics_path)
+    model_type = Config.MODEL.lower()
+    writer = SummaryWriter(saved_metrics_path[:-1]+model_type+"/")
     best_val_acc = 0.0
     early_stopping_patience = 5
     no_improvement = 0
@@ -274,7 +275,6 @@ def main():
             best_val_acc = val_acc
             no_improvement = 0
             os.makedirs(saved_model_path[:-1], exist_ok=True)
-            model_type = Config.MODEL.lower()
             torch.save(model.state_dict(), saved_model_path+"best_model_"+model_type+".pth")
             print(f"New best model saved! Val Acc: {val_acc:.2f}%")
         else:
