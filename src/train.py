@@ -35,6 +35,10 @@ def train_one_epoch(model, dataloader, criterion, optimizer, device):
     total = 0
     running_loss = 0
 
+    for images, labels in data_loader:
+    # Your training/inference code here
+    print(images.size(), labels.size())
+    
     pbar = tqdm(enumerate(dataloader), total=len(dataloader))
     for batch_idx, (images, labels) in pbar:
         images, labels = images.to(device), labels.to(device)
@@ -202,14 +206,14 @@ def main():
         train_dataset,
         batch_size=Config.BATCH_SIZE,
         shuffle=True,
-        num_workers=Config.NUM_WORKERS,
+        # num_workers=Config.NUM_WORKERS,
     )
 
     val_loader = DataLoader(
         val_dataset,
         batch_size=Config.BATCH_SIZE,
         shuffle=False,
-        num_workers=Config.NUM_WORKERS,
+        # num_workers=Config.NUM_WORKERS,
     )
 
     # Initialize model
