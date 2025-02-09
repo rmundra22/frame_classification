@@ -36,8 +36,9 @@ def train_one_epoch(model, dataloader, criterion, optimizer, device):
     running_loss = 0
 
     for images, labels in data_loader:
-    # Your training/inference code here
-    print(images.size(), labels.size())
+        # Your training/inference code here
+        print(images.size(), labels.size())
+        break
     
     pbar = tqdm(enumerate(dataloader), total=len(dataloader))
     for batch_idx, (images, labels) in pbar:
