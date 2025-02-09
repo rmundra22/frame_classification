@@ -11,6 +11,9 @@ RUN poetry install --without dev
 
 FROM python:3.9
 
+# Install pytest
+RUN pip install pytest
+
 # Copy the rest of the project files
 COPY . .
 
