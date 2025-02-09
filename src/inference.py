@@ -136,7 +136,7 @@ def parse_args():
     parser = argparse.ArgumentParser(description="Video shot-type analyzer")
     parser.add_argument("--url", help="Path to the input video file", type=str, required=True)
     parser.add_argument("--headers", help="Headers", type=str, default="")
-    parser.add_argument("--model_path", help="Path to the model", type=str, default="./best_models/best_model_"+model_type+".pth")
+    parser.add_argument("--model_path", help="Path to the model", type=str, default="./saved_models/best_model_"+model_type+".pth")
     return parser.parse_args()
 
 if __name__ == "__main__":

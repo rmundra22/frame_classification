@@ -4,11 +4,17 @@ import torch
 class Config:
     SEED = 42
     # Dataset
-    # DATA_PATH_TRAIN = "/workdir/data/train/"
-    # DATA_PATH_TEST  = "/workdir/data/test/"
+    # DATA_PATH_TRAIN = "data/train/"
+    # DATA_PATH_TEST  = "data/test/"
+    ARTIFACTS_PATH = "artifacts/"
+    SAVED_MODELS_PATH = "saved_models/"
+    SAVED_METRICS_PATH = "runs/experiment/"
     # running code in kaggle
     DATA_PATH_TRAIN = "/kaggle/working/data/assignment/train"
     DATA_PATH_TEST  = "/kaggle/working/data/assignment/test/"
+    ARTIFACTS_PATH = "/kaggle/working/artifacts/"
+    SAVED_MODELS_PATH = "/kaggle/working/saved_models/"
+    SAVED_METRICS_PATH = "/kaggle/working/runs/experiment/"
     IMAGE_SIZE = 224  # Configure image size. Height and width are kept same.
 
     # Training

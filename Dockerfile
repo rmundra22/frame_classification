@@ -2,7 +2,7 @@ FROM pytorch/pytorch:2.5.1-cuda12.4-cudnn9-runtime
 
 RUN pip install poetry==1.4.2
 
-WORKDIR /src
+WORKDIR /frame_classification
 
 COPY pyproject.toml poetry.lock ./
 RUN touch README.md

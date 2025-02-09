@@ -37,12 +37,12 @@ Now you can run python with all necessary dependencies.
 
 The following command runs the model training inside container:
 ```
-PYTHONPATH=${PWD} python ./src/0_train.py
-PYTHONPATH=${PWD} python ./src/1_test.py
-PYTHONPATH=${PWD} python ./src/2_inference.py
+PYTHONPATH=${PWD} python ./src/train.py
+PYTHONPATH=${PWD} python ./src/test.py
+PYTHONPATH=${PWD} python ./src/inference.py
 
 ```
 
 ## Implementation
 
-Files [0_train.py](src/0_train.py "0_train.py"), [1_test.py](src/1_test.py "1_test.py"), [2_inference.py](src/2_inference.py "2_inference.py") contain `#CANDIDATE` instructions. Each is designed for three difficulty levels (one for each level of ). Follow them
+Files [train.py](src/train.py "train.py"), [test.py](src/test.py "test.py"), [inference.py](src/inference.py "inference.py") contain `#CANDIDATE` instructions. Each is designed for three difficulty levels (one for each level of ). Follow them

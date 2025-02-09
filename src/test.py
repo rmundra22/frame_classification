@@ -23,6 +23,8 @@ elif Config.MODEL == "CNNDeepWithSE":
     from models.cnn_deep_with_se import CNNModelWithSEBlock as CNNModel
 elif Config.MODEL == "CNNDeepWithCSE":
     from models.cnn_deep_with_cse import CNNModelWithConvSEBlock as CNNModel
+    
+artifacts_path = Config.ARTIFACTS_PATH
 
 # CANDIDATE:
 # Level 1. Calculate test accuracy, and classification report (use sklearn.metrics for this). Fill the results dictionary with these metrics.
@@ -107,7 +109,7 @@ def test(args):
     plt.ylabel('Actual')
     plt.xlabel('Predicted')
     plt.title('Confusion Matrix')
-    plt.savefig("artifacts/confusion_metric_for_"+model_type+".png") 
+    plt.savefig(artifacts_path+"confusion_metric_for_"+model_type+".png") 
     plt.show()
     
     visualize_last_layer_embeddings(model, test_dataloader)
@@ -149,7 +151,7 @@ def visualize_last_layer_embeddings(model, dataloader):
     plt.ylabel('t-SNE Component 2')
     plt.legend()
     plt.colorbar(scatter, label='Class Label')
-    plt.savefig("artifacts/tsne_for_last_layer_embedding_with_"+model_type+".png") 
+    plt.savefig(artifacts_path+"tsne_for_last_layer_embedding_with_"+model_type+".png") 
     plt.show()
     return 
 
@@ -165,7 +167,7 @@ def main():
     parser.add_argument(
         "--model_path",
         type=str,
-        default="./best_models/best_model.pth",
+        default="./saved_models/best_model.pth",
         help="Path to the trained model weights",
     )
 

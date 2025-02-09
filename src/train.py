@@ -21,6 +21,8 @@ elif Config.MODEL == "CNNDeepWithCSE":
 if Config.DEVICE == "cuda":
     scaler = torch.amp.GradScaler()
 
+saved_model_path = Config.SAVED_MODELS_PATH
+saved_metrics_path = Config.SAVED_METRICS_PATH
 
 def train_one_epoch(model, dataloader, criterion, optimizer, device):
     model.train()
@@ -244,7 +246,7 @@ def main():
     # Level 3. Evaluate 3 different criterion functions
     
     # Training loop with early stopping, tensorboard, and multiple criterion evaluation
-    writer = SummaryWriter("runs/experiment")
+    writer = SummaryWriter(saved_metrics_path)
     best_val_acc = 0.0
     early_stopping_patience = 5
     no_improvement = 0
@@ -278,9 +280,9 @@ def main():
         if val_acc > best_val_acc:
             best_val_acc = val_acc
             no_improvement = 0
-            os.makedirs("best_models", exist_ok=True)
+            os.makedirs(saved_model_path[:-1], exist_ok=True)
             model_type = Config.MODEL.lower()
-            torch.save(model.state_dict(), "best_models/best_model_"+model_type+".pth")
+            torch.save(model.state_dict(), saved_model_path+"best_model_"+model_type+".pth")
             print(f"New best model saved! Val Acc: {val_acc:.2f}%")
         else:
             no_improvement += 1
