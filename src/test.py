@@ -112,7 +112,7 @@ def test(args):
     plt.savefig(artifacts_path+"confusion_metric_for_"+model_type+".png") 
     plt.show()
     
-    visualize_last_layer_embeddings(model, test_dataloader)
+    visualize_last_layer_embeddings(model, test_loader)
 
     return results
 
