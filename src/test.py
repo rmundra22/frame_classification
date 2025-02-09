@@ -16,13 +16,13 @@ from config import Config
 
 # switch to right model for testing
 if Config.MODEL == "CNNBase":
-    from src.models.cnn_base import CNNModelBase as CNNModel
+    from frame_classification.src.models.cnn_base import CNNModelBase as CNNModel
 elif Config.MODEL == "CNNDeep":
-    from src.models.cnn_deep import CNNModelDeep as CNNModel
+    from frame_classification.src.models.cnn_deep import CNNModelDeep as CNNModel
 elif Config.MODEL == "CNNDeepWithSE":
-    from src.models.cnn_deep_with_se import CNNModelWithSEBlock as CNNModel
+    from frame_classification.src.models.cnn_deep_with_se import CNNModelWithSEBlock as CNNModel
 elif Config.MODEL == "CNNDeepWithCSE":
-    from src.models.cnn_deep_with_cse import CNNModelWithConvSEBlock as CNNModel
+    from frame_classification.src.models.cnn_deep_with_cse import CNNModelWithConvSEBlock as CNNModel
     
 artifacts_path = Config.ARTIFACTS_PATH
 
