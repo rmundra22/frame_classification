@@ -180,7 +180,7 @@ def main():
     
     indices = random.sample(range(dataset_size), small_dataset_size) # select indices uniformly at random
     subset_global_dataset = Subset(global_dataset, indices) # uniformly select a subset of data
-    print(f"Subset data size for training & tuning: {len(subset_dataset)}")
+    print(f"Subset data size for training & tuning: {len(subset_global_dataset)}")
     
     train_dataset, val_dataset = torch.utils.data.random_split(
         subset_global_dataset,
