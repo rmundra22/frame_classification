@@ -12,13 +12,13 @@ from utils import set_seed
 
 # switch to right model for testing
 if Config.MODEL == "CNNBase":
-    from models.cnn_base import CNNModelBase as CNNModel
+    from src.models.cnn_base import CNNModelBase as CNNModel
 elif Config.MODEL == "CNNDeep":
-    from models.cnn_deep import CNNModelDeep as CNNModel
+    from src.models.cnn_deep import CNNModelDeep as CNNModel
 elif Config.MODEL == "CNNDeepWithSE":
-    from models.cnn_deep_with_se import CNNModelWithSEBlock as CNNModel
+    from src.models.cnn_deep_with_se import CNNModelWithSEBlock as CNNModel
 elif Config.MODEL == "CNNDeepWithCSE":
-    from models.cnn_deep_with_cse import CNNModelWithConvSEBlock as CNNModel
+    from src.models.cnn_deep_with_cse import CNNModelWithConvSEBlock as CNNModel
 
 if Config.DEVICE == "cuda":
     scaler = torch.amp.GradScaler()
@@ -191,9 +191,9 @@ def main():
     train_dataset.dataset.transform = transform_train  # Apply different transforms to training
     val_dataset.dataset.transform = transform_val  # Keep validation set simple
     
-    print(f"Total dataset size: {dataset_size}")
-    print(f"Training set size: {len(train_dataset)}")
-    print(f"Validation set size: {len(val_dataset)}")
+    print(f"Total dataset size: {small_dataset_size}")
+    print(f"Training set size: {len(train_size)}")
+    print(f"Validation set size: {len(val_size)}")
 
     # Create DataLoaders for train and validation sets
     train_loader = DataLoader(
