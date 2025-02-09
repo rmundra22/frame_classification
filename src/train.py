@@ -93,26 +93,16 @@ def validate(model, dataloader, criterion, device):
 
     return total_loss / len(dataloader), 100.0 * correct / total
 
-
+# CANDIDATE:
+# Level 1. Create and use smaller dataset for faster training and smaller validation set for quick testing
+# Level 2. Merge two spectator classes into one
+# Level 3. Apply different transforms (which make sense) to the training and validation dataset (data augumentation). 
+    # Apply them wisely for under-represented classes
 def main():
     set_seed(Config.SEED)
     # Create dataset and dataloader
-    global_dataset = ImageFolder(
-        root=Config.DATA_PATH_TRAIN,
-        transform=transforms.Compose(
-            [
-                transforms.Resize((224, 224)),
-                transforms.ToTensor(),
-                transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5]),
-            ]
-        ),
-    )
-    # CANDIDATE:
-    # Level 1. Create and use smaller dataset for faster training and smaller validation set for quick testing
-    # Level 2. Merge two spectator classes into one
-    # Level 3. Apply different transforms (which make sense) to the training and validation dataset (data augumentation). 
-        # Apply them wisely for under-represented classes
-
+    global_dataset = ImageFolder(root=Config.DATA_PATH_TRAIN, transform=None)
+    
     set_seed(Config.SEED)
     
    # Create dataset and dataloader
@@ -134,11 +124,6 @@ def main():
             transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5]),
         ]
     ) # kinda like a default transformation
-
-    global_dataset = ImageFolder(
-        root=Config.DATA_PATH_TRAIN,
-        transform=transform_val,
-    )
 
     # Merge 'spectators_long' and 'spectators_short' into 'spectators'
     class_map = {
@@ -191,7 +176,10 @@ def main():
     small_dataset_size = int(reduction_factor * dataset_size)  # Smaller training dataset for faster training
     train_size = int(0.8 * small_dataset_size) # keeping 80-20% partition for train-val data
     val_size = small_dataset_size - train_size
-    subset_global_dataset = random.sample(global_dataset, small_dataset_size) # uniformly select a subset of data
+    
+    indices = random.sample(range(dataset_size), small_dataset_size) # select indices uniformly at random
+    subset_global_dataset = Subset(global_dataset, indices) # uniformly select a subset of data
+    print(f"Subset data size for training & tuning: {len(subset_dataset)}")
     
     train_dataset, val_dataset = torch.utils.data.random_split(
         subset_global_dataset,
