@@ -28,6 +28,43 @@ if Config.DEVICE == "cuda":
 saved_model_path = Config.SAVED_MODELS_PATH
 saved_metrics_path = Config.SAVED_METRICS_PATH
 
+def temp(model, dataloader, criterion, optimizer, device):
+    model.train()
+    total_loss = 0
+    correct = 0
+    total = 0
+    
+    pbar = tqdm(enumerate(dataloader), total=len(dataloader))
+    for batch_idx, (images, labels) in pbar:
+        images, labels = images.to(device), labels.to(device)
+        
+        # Perform autocast if using mixed precision
+        with torch.cuda.amp.autocast(device_type="cuda", dtype=torch.float16) if device == "cuda" else autocast():
+            outputs = model(images)
+            loss = criterion(outputs, labels)
+
+        # Backward and step
+        if device == "cuda":
+            scaler.scale(loss).backward()
+            scaler.step(optimizer)
+            scaler.update()
+        else:
+            loss.backward()
+            optimizer.step()
+
+        total_loss += loss.item()
+        _, predicted = torch.max(outputs, 1)
+        total += labels.size(0)
+        correct += predicted.eq(labels).sum().item()
+
+        running_loss = total_loss / (batch_idx + 1)  # Calculate running average
+        # Update tqdm postfix with running statistics
+        pbar.set_postfix(
+            {"loss": f"{running_loss:.4f}", "acc": f"{100.0 * correct / total:.2f}%"}
+        )
+
+    return total_loss / len(dataloader), 100.0 * correct / total
+
 def train_one_epoch(model, dataloader, criterion, optimizer, device):
     model.train()
     total_loss = 0
@@ -171,8 +208,8 @@ def main():
         return dataset
 
     # Apply the label & target updates
-    # global_dataset = update_labels(global_dataset)
-    # global_dataset = update_target(global_dataset)
+    global_dataset = update_labels(global_dataset)
+    global_dataset = update_target(global_dataset)
     
     dataset_size = len(global_dataset)
     reduction_factor = Config.DATA_REDUCTION_FACTOR
@@ -248,7 +285,7 @@ def main():
         print(f"\nEpoch {epoch + 1}/{Config.NUM_EPOCHS}")
         
         # Training phase
-        train_loss, train_acc = train_one_epoch(
+        train_loss, train_acc = temp(
             model, train_loader, criterion, optimizer, Config.DEVICE
         )
         
