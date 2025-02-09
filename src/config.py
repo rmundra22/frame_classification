@@ -20,7 +20,7 @@ class Config:
     # Training
     BATCH_SIZE = 32
     LEARNING_RATE = 1e-4
-    NUM_EPOCHS = 15
+    NUM_EPOCHS = 30
     DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
     LR_STEP_SIZE = 1
     LR_GAMMA = 0.9
@@ -42,7 +42,7 @@ class Config:
         "short_player",
         "spectators",
     ]
-    MODEL = "CNNDeepWithSE" #  "CNNBase", "CNNDeep", "CNNDeepWithSE", "CNNDeepWithCSE"
+    MODEL = "CNNDeepWithCSE" #  "CNNBase", "CNNDeep", "CNNDeepWithSE", "CNNDeepWithCSE"
     DATA_REDUCTION_FACTOR = 1.0
     LOSS_FUNCTION = "CrossEntropy" # "CrossEntropy", "NLLLoss", "MSELoss", "FocalLoss"
     SSIM_THRESHOLD = 30
