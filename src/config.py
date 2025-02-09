@@ -6,9 +6,9 @@ class Config:
     # Dataset
     # DATA_PATH_TRAIN = "data/train/"
     # DATA_PATH_TEST  = "data/test/"
-    ARTIFACTS_PATH = "artifacts/"
-    SAVED_MODELS_PATH = "saved_models/"
-    SAVED_METRICS_PATH = "runs/experiment/"
+    # ARTIFACTS_PATH = "artifacts/"
+    # SAVED_MODELS_PATH = "saved_models/"
+    # SAVED_METRICS_PATH = "runs/experiment/"
     # running code in kaggle
     DATA_PATH_TRAIN = "/kaggle/working/data/assignment/train"
     DATA_PATH_TEST  = "/kaggle/working/data/assignment/test/"
