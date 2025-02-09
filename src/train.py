@@ -34,11 +34,6 @@ def train_one_epoch(model, dataloader, criterion, optimizer, device):
     correct = 0
     total = 0
     running_loss = 0
-
-    for images, labels in dataloader:
-        # Your training/inference code here
-        print(images.size(), labels.size())
-        break
     
     pbar = tqdm(enumerate(dataloader), total=len(dataloader))
     for batch_idx, (images, labels) in pbar:
@@ -176,8 +171,8 @@ def main():
         return dataset
 
     # Apply the label & target updates
-    global_dataset = update_labels(global_dataset)
-    global_dataset = update_target(global_dataset)
+    # global_dataset = update_labels(global_dataset)
+    # global_dataset = update_target(global_dataset)
     
     dataset_size = len(global_dataset)
     reduction_factor = Config.DATA_REDUCTION_FACTOR
