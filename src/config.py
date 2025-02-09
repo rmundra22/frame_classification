@@ -7,8 +7,8 @@ class Config:
     # DATA_PATH_TRAIN = "/workdir/data/train/"
     # DATA_PATH_TEST  = "/workdir/data/test/"
     # running code in kaggle
-    DATA_PATH_TRAIN = "rmtrickster/sports-dataset-img/assignment/train"
-    DATA_PATH_TEST  = "rmtrickster/sports-dataset-img/assignment/test/"
+    DATA_PATH_TRAIN = "data/assignment/train"
+    DATA_PATH_TEST  = "data/assignment/test/"
     IMAGE_SIZE = 224  # Configure image size. Height and width are kept same.
 
     # Training
