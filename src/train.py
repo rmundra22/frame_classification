@@ -187,7 +187,7 @@ def main():
     
     dataset_size = len(global_dataset)
     reduction_factor = Config.DATA_REDUCTION_FACTOR
-    small_dataset_size = int(DATA_REDUCTION_FACTOR * dataset_size)  # Smaller training dataset for faster training
+    small_dataset_size = int(reduction_factor * dataset_size)  # Smaller training dataset for faster training
     train_size = int(0.8 * small_dataset_size) # keeping 80-20% partition for train-val data
     val_size = small_dataset_size - train_size
     
