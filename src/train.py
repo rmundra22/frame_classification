@@ -141,11 +141,11 @@ def main():
 
     # Merge 'spectators_long' and 'spectators_short' into 'spectators'
     class_map = {
-        'close-up-head': 1,
-        'close-up-waist': 2,
+        'closeup_head': 1,
+        'closeup_waist': 2,
         'long': 3,
         'neg': 4,
-        'short-player': 5,
+        'short_player': 5,
         'spectators': 6,  # Merged class
     }
     class_to_idx = global_dataset.class_to_idx  # Mapping from class name to index
