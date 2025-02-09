@@ -10,6 +10,7 @@ from torchvision.datasets import ImageFolder
 from torch.utils.tensorboard import SummaryWriter
 from config import Config
 from utils import set_seed
+from loss import FocalLoss
 
 # switch to right model for training
 if Config.MODEL == "CNNBase":
