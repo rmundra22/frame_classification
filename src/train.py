@@ -191,7 +191,7 @@ def main():
     small_dataset_size = int(reduction_factor * dataset_size)  # Smaller training dataset for faster training
     train_size = int(0.8 * small_dataset_size) # keeping 80-20% partition for train-val data
     val_size = small_dataset_size - train_size
-    subset_global_dataset = random(global_dataset, small_dataset_size) # uniformly select a subset of data
+    subset_global_dataset = random.sample(global_dataset, small_dataset_size) # uniformly select a subset of data
     
     train_dataset, val_dataset = torch.utils.data.random_split(
         subset_global_dataset,
