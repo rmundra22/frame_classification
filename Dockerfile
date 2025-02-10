@@ -13,6 +13,7 @@ FROM python:3.9
 
 # Install pytest
 RUN pip install pytest
+RUN pip install av
 
 # Copy the rest of the project files
 COPY . .
