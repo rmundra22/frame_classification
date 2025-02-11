@@ -35,7 +35,8 @@ class Analyzer:
     def load_model(self, model_path):
         """Load the model and handle errors if the model is missing or corrupted."""
         try:
-            model = torch.load(model_path, map_location="cpu")
+            model.load_state_dict(torch.load(model_path, map_location=Config.DEVICE))
+            model = model.to(Config.DEVICE)
             model.eval()
             return model
         except Exception as e:
