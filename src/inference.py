@@ -46,8 +46,7 @@ class Analyzer:
         """Load the model and handle errors if the model is missing or corrupted."""
         try:
             model = CNNModel(len(Config.CLASSES_ORIG))
-            model.load_state_dict(torch.load(model_path, map_location=Config.DEVICE))
-            model = model.to(Config.DEVICE)
+            model.load_state_dict(torch.load(model_path, map_location="cpu", weights_only=True))
             model.eval()
             return model
         except Exception as e:
