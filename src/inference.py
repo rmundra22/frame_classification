@@ -14,6 +14,16 @@ from config import Config
 # Level 2b: Implement a stride in the frame analysis to improve performance. Use two frames per second.
 # Level 3: Implement a mechanism to detect scene transitions between segments. Use the OpenCV library for this.
 
+# switch to right model for testing
+if Config.MODEL == "CNNBase":
+    from models.cnn_base import CNNModelBase as CNNModel
+elif Config.MODEL == "CNNDeep":
+    from models.cnn_deep import CNNModelDeep as CNNModel
+elif Config.MODEL == "CNNDeepWithSE":
+    from models.cnn_deep_with_se import CNNModelWithSEBlock as CNNModel
+elif Config.MODEL == "CNNDeepWithCSE":
+    from models.cnn_deep_with_cse import CNNModelWithConvSEBlock as CNNModel
+    
 class Analyzer:
     """
     1. Loads the model and processes video frames through it.
@@ -35,6 +45,7 @@ class Analyzer:
     def load_model(self, model_path):
         """Load the model and handle errors if the model is missing or corrupted."""
         try:
+            model = CNNModel(len(Config.CLASSES_ORIG))
             model.load_state_dict(torch.load(model_path, map_location=Config.DEVICE))
             model = model.to(Config.DEVICE)
             model.eval()
