@@ -46,3 +46,6 @@ PYTHONPATH=${PWD} python ./src/inference.py
 ## Implementation
 
 Files [train.py](src/train.py "train.py"), [test.py](src/test.py "test.py"), [inference.py](src/inference.py "inference.py") contain `#CANDIDATE` instructions. Each is designed for three difficulty levels (one for each level of ). Follow them
+
+## Video Submission
+Link: https://drive.google.com/file/d/1VZzVYTQbsqrjN46NRnSaqClbnY6VnvL-/view?usp=drivesdk

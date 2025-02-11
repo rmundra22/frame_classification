@@ -14,7 +14,7 @@ from config import Config
 # Level 2b: Implement a stride in the frame analysis to improve performance. Use two frames per second.
 # Level 3: Implement a mechanism to detect scene transitions between segments. Use the OpenCV library for this.
 
-# switch to right model for testing
+# switch to right model for inference
 if Config.MODEL == "CNNBase":
     from models.cnn_base import CNNModelBase as CNNModel
 elif Config.MODEL == "CNNDeep":
